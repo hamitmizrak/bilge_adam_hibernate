@@ -12,6 +12,8 @@
 		
 		<!-- HQL ile SQL dönüşümünü sağlar dialect -->
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		
+			
 
 		<!-- database connection POSTGRESQL -->
 		<!-- <property name="hibernate.connection.driver_class">org.postgresql.Driver</property> -->

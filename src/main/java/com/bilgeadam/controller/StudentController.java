@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.persistence.TypedQuery;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import com.bilgeadam.entity.StudentEntity;
@@ -13,6 +15,18 @@ import com.bilgeadam.hibernateconfig.IDatabaseCrud;
 public class StudentController implements Serializable, IDatabaseCrud<StudentEntity> {
 	
 	private static final long serialVersionUID = -1213775719782464391L;
+	private static final Logger logger = LogManager.getLogger(StudentController.class); // logger classı import
+	// all < trace=yeşil < debug=yeşil < info=yeşil < warn=sarı < error=kırmızı <
+	// fatal=kırmız < off
+	
+	public static void main(String[] args) {
+		logger.trace("trace logger durumu");
+		logger.debug("debug logger durumu");
+		logger.info("info logger durumu");
+		logger.warn("warn logger durumu");
+		logger.error("error logger durumu");
+		logger.fatal("fatal logger durumu");
+	}
 	
 	// DML:Create Delete Update : transaction
 	// DQL:select : transaction isteğe bağlı
@@ -29,8 +43,9 @@ public class StudentController implements Serializable, IDatabaseCrud<StudentEnt
 			session.getTransaction().begin();
 			session.persist(entity);
 			session.getTransaction().commit();
-			System.out.println("ekleme tamamdır" + StudentController.class);
+			logger.info("ekleme tamamdır" + StudentController.class);
 		} catch (Exception e) {
+			logger.error("ekleme anında hata meydana geldi !!!!! " + StudentController.class);
 			e.printStackTrace();
 		}
 	}
@@ -46,9 +61,10 @@ public class StudentController implements Serializable, IDatabaseCrud<StudentEnt
 				session.getTransaction().begin();
 				session.remove(findEntity);
 				session.getTransaction().commit();
-				System.out.println("Silme Başarılı " + StudentEntity.class);
+				logger.info("Silme Başarılı " + StudentEntity.class);
 			}
 		} catch (Exception e) {
+			logger.error("silme anında hata meydana geldi !!!!! " + StudentController.class);
 			e.printStackTrace();
 		}
 		
@@ -69,10 +85,11 @@ public class StudentController implements Serializable, IDatabaseCrud<StudentEnt
 				session.getTransaction().begin();
 				session.merge(findEntity);
 				session.getTransaction().commit();
-				System.out.println("Güncelleme Başarılı " + StudentEntity.class);
+				logger.info("Güncelleme Başarılı " + StudentEntity.class);
 			}
 			
 		} catch (Exception e) {
+			logger.error("güncelleme anında hata meydana geldi !!!!! " + StudentController.class);
 			e.printStackTrace();
 		}
 	}
@@ -91,6 +108,7 @@ public class StudentController implements Serializable, IDatabaseCrud<StudentEnt
 		typedQuery.setParameter("key", id);
 		
 		ArrayList<StudentEntity> arrayList = (ArrayList<StudentEntity>) typedQuery.getResultList();
+		logger.info("listelendi " + StudentEntity.class);
 		return arrayList;
 	}
 	
@@ -110,6 +128,7 @@ public class StudentController implements Serializable, IDatabaseCrud<StudentEnt
 				return null;
 			}
 		} catch (Exception e) {
+			logger.error("find anında hata meydana geldi !!!!! " + StudentController.class);
 			e.printStackTrace();
 		}
 		return null;

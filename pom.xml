@@ -25,8 +25,28 @@
     </plugins>
   </build>
   
+  <!-- eger version birden fazla yerde kullanılıyorsa biz declare yapariz -->
+<!--   <properties> -->
+<!--   	<log4j.version>2.11.2</log4j.version> -->
+<!--   </properties> -->
+  
 <!-- maven libraries all -->
 	<dependencies>
+	
+		<!-- log4j -->
+		<!--  
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+			
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		-->
 	
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>

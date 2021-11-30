@@ -6,13 +6,19 @@ import com.bilgeadam.entity.StudentEntity;
 public class StudentEntityMain {
 	
 	public static void main(String[] args) {
+		// JPQL
+		// HQL
 		
 		//// Create
-		for (int i = 0; i < 4; i++) {
-			StudentEntity studentEntity = new StudentEntity("Hamit", "Mızrak", "hamitmizrak@gmail.com", "455155");
-			StudentController studentController1 = new StudentController();
-			studentController1.create(studentEntity);
-		}
+		// for (int i = 0; i < 4; i++) {
+		// StudentEntity studentEntity = new StudentEntity("Hamit", "Mızrak",
+		// "hamitmizrak@gmail.com", "455155");
+		// StudentController studentController1 = new StudentController();
+		// studentController1.create(studentEntity);
+		// }
+		StudentEntity studentEntity = new StudentEntity("Hamit", "Mızrak", "hamitmizrak@gmail.com", "455155");
+		StudentController studentController1 = new StudentController();
+		studentController1.create(studentEntity);
 		
 		//// find
 		// StudentController studentController2 = new StudentController();
@@ -33,10 +39,10 @@ public class StudentEntityMain {
 		// studentController4.update(studentEntity4);
 		
 		// list
-		StudentController studentController4 = new StudentController();
-		for (StudentEntity temp : studentController4.list()) {
-			System.out.println(temp);
-		}
+		// StudentController studentController4 = new StudentController();
+		// for (StudentEntity temp : studentController4.list()) {
+		// System.out.println(temp);
+		// }
 		
 		// hql
 		// eclipse üzerinden database bağlanmak CRUD

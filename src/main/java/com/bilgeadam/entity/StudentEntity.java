@@ -1,6 +1,7 @@
 package com.bilgeadam.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,29 +9,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-// POJO
-// Bean
-// Entity Bean
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "student") // database tablo karşılığı
+@Table(name = "student")
 public class StudentEntity implements Serializable {
 	private static final long serialVersionUID = 8254402310579127680L;
 	
-	// nesne dğişkeni
+	// optimistic locking, one transaction at moment
+	@Version
+	private Long version;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // Mysql
-	// @GeneratedValue(strategy = GenerationType.AUTO) //postgresql
-	@Column(name = "student_id")
+	@Lob
+	private String bigData;
+	
+	@Id // PK+NN+UN
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @GeneratedValue(strategy = GenerationType.AUTO) // for postgres
+	@Column(name = "student_id", insertable = false, updatable = false)
+	// optimistik Locking: kilitlenme
+	// @Version: Birden fazla transaction durumlarında: datalarımızın aynı anda
+	// değişiklik yapılmasına izin verimiyor
 	private long studentId;
 	
-	@Column(name = "student_name", length = 150)
+	@Column(name = "student_name", length = 255)
 	private String studentName;
 	
 	@Column(name = "student_surname")
@@ -42,19 +51,20 @@ public class StudentEntity implements Serializable {
 	@Column(name = "student_password")
 	private String studentPassword;
 	
-	// DATE:yıl ay gün
-	// TIME:saat dakika saniye
-	// TIMESTAMP:yıl ay gün saat dakika saniye
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
-	private java.util.Date date;
+	private Date date;
 	
-	// parametresiz constructor
+	@Column(name = "tc_number", length = 11, nullable = false)
+	private int tcNumber;
+	
+	@Transient // not insert to database
+	private int counter;
+	
 	public StudentEntity() {
-		
+		// TODO Auto-generated constructor stub
 	}
 	
-	// parametreli constructor
 	public StudentEntity(String studentName, String studentSurname, String emailAddress, String studentPassword) {
 		this.studentName = studentName;
 		this.studentSurname = studentSurname;
@@ -62,36 +72,6 @@ public class StudentEntity implements Serializable {
 		this.studentPassword = studentPassword;
 	}
 	
-	// toString
-	@Override
-	public String toString() {
-		return "StudentEntity [studentId=" + studentId + ", studentName=" + studentName + ", studentSurname="
-				+ studentSurname + ", emailAddress=" + emailAddress + ", studentPassword=" + studentPassword + ", date="
-				+ date + "]";
-	}
-	
-	// hash code
-	@Override
-	public int hashCode() {
-		return Objects.hash(date, emailAddress, studentId, studentName, studentPassword, studentSurname);
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		StudentEntity other = (StudentEntity) obj;
-		return Objects.equals(date, other.date) && Objects.equals(emailAddress, other.emailAddress)
-				&& studentId == other.studentId && Objects.equals(studentName, other.studentName)
-				&& Objects.equals(studentPassword, other.studentPassword)
-				&& Objects.equals(studentSurname, other.studentSurname);
-	}
-	
-	// getter and setter
 	public long getStudentId() {
 		return studentId;
 	}
@@ -132,16 +112,39 @@ public class StudentEntity implements Serializable {
 		this.studentPassword = studentPassword;
 	}
 	
-	public java.util.Date getDate() {
+	public Date getDate() {
 		return date;
 	}
 	
-	public void setDate(java.util.Date date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	@Override
+	public String toString() {
+		return "StudentEntity [studentId=" + studentId + ", studentName=" + studentName + ", studentSurname="
+				+ studentSurname + ", emailAddress=" + emailAddress + ", studentPassword=" + studentPassword + ", date="
+				+ date + ", tcNumber=" + tcNumber + "]";
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(date, emailAddress, studentId, studentName, studentPassword, studentSurname, tcNumber);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StudentEntity other = (StudentEntity) obj;
+		return Objects.equals(date, other.date) && Objects.equals(emailAddress, other.emailAddress)
+				&& studentId == other.studentId && Objects.equals(studentName, other.studentName)
+				&& Objects.equals(studentPassword, other.studentPassword)
+				&& Objects.equals(studentSurname, other.studentSurname) && tcNumber == other.tcNumber;
 	}
 	
 }

@@ -9,9 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 // POJO
 // Bean
 // Entity Bean
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "student") // database tablo karşılığı
@@ -38,6 +42,13 @@ public class StudentEntity implements Serializable {
 	@Column(name = "student_password")
 	private String studentPassword;
 	
+	// DATE:yıl ay gün
+	// TIME:saat dakika saniye
+	// TIMESTAMP:yıl ay gün saat dakika saniye
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	private java.util.Date date;
+	
 	// parametresiz constructor
 	public StudentEntity() {
 		
@@ -55,13 +66,14 @@ public class StudentEntity implements Serializable {
 	@Override
 	public String toString() {
 		return "StudentEntity [studentId=" + studentId + ", studentName=" + studentName + ", studentSurname="
-				+ studentSurname + ", emailAddress=" + emailAddress + ", studentPassword=" + studentPassword + "]";
+				+ studentSurname + ", emailAddress=" + emailAddress + ", studentPassword=" + studentPassword + ", date="
+				+ date + "]";
 	}
 	
 	// hash code
 	@Override
 	public int hashCode() {
-		return Objects.hash(emailAddress, studentId, studentName, studentPassword, studentSurname);
+		return Objects.hash(date, emailAddress, studentId, studentName, studentPassword, studentSurname);
 	}
 	
 	@Override
@@ -73,8 +85,8 @@ public class StudentEntity implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		StudentEntity other = (StudentEntity) obj;
-		return Objects.equals(emailAddress, other.emailAddress) && studentId == other.studentId
-				&& Objects.equals(studentName, other.studentName)
+		return Objects.equals(date, other.date) && Objects.equals(emailAddress, other.emailAddress)
+				&& studentId == other.studentId && Objects.equals(studentName, other.studentName)
 				&& Objects.equals(studentPassword, other.studentPassword)
 				&& Objects.equals(studentSurname, other.studentSurname);
 	}
@@ -118,6 +130,18 @@ public class StudentEntity implements Serializable {
 	
 	public void setStudentPassword(String studentPassword) {
 		this.studentPassword = studentPassword;
+	}
+	
+	public java.util.Date getDate() {
+		return date;
+	}
+	
+	public void setDate(java.util.Date date) {
+		this.date = date;
+	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }

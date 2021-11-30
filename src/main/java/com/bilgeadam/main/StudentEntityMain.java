@@ -8,12 +8,11 @@ public class StudentEntityMain {
 	public static void main(String[] args) {
 		
 		//// Create
-		// for (int i = 0; i < 4; i++) {
-		// StudentEntity studentEntity = new StudentEntity("Hamit", "Mızrak",
-		// "hamitmizrak@gmail.com", "455155");
-		// StudentController studentController1 = new StudentController();
-		// studentController1.create(studentEntity);
-		// }
+		for (int i = 0; i < 4; i++) {
+			StudentEntity studentEntity = new StudentEntity("Hamit", "Mızrak", "hamitmizrak@gmail.com", "455155");
+			StudentController studentController1 = new StudentController();
+			studentController1.create(studentEntity);
+		}
 		
 		//// find
 		// StudentController studentController2 = new StudentController();
@@ -38,6 +37,11 @@ public class StudentEntityMain {
 		for (StudentEntity temp : studentController4.list()) {
 			System.out.println(temp);
 		}
+		
+		// hql
+		// eclipse üzerinden database bağlanmak CRUD
+		// EntityAnotation
+		// log4j
 		
 	}
 	

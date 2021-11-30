@@ -10,15 +10,19 @@ public class StudentEntityMain {
 		// HQL
 		
 		//// Create
-		// for (int i = 0; i < 4; i++) {
+		// String bigData, String studentName, String studentSurname, String
+		//// emailAddress,
+		// String studentPassword, int tcNumber
+		for (int i = 0; i < 10; i++) {
+			StudentEntity studentEntity = new StudentEntity("big data " + i, "Hamit " + i, "Mızrak" + i,
+					"hamitmizrak@gmail.com " + i, "passwords" + i, 100 + i);
+			StudentController studentController1 = new StudentController();
+			studentController1.create(studentEntity);
+		}
 		// StudentEntity studentEntity = new StudentEntity("Hamit", "Mızrak",
 		// "hamitmizrak@gmail.com", "455155");
 		// StudentController studentController1 = new StudentController();
 		// studentController1.create(studentEntity);
-		// }
-		StudentEntity studentEntity = new StudentEntity("Hamit", "Mızrak", "hamitmizrak@gmail.com", "455155");
-		StudentController studentController1 = new StudentController();
-		studentController1.create(studentEntity);
 		
 		//// find
 		// StudentController studentController2 = new StudentController();

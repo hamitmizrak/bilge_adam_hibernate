@@ -24,19 +24,29 @@ public class StudentEntity implements Serializable {
 	private static final long serialVersionUID = 8254402310579127680L;
 	
 	// optimistic locking, one transaction at moment
+	// optimistik Locking: kilitlenme
+	// @Version: Birden fazla transaction durumlarında: datalarımızın aynı anda
+	// değişiklik yapılmasına izin verimiyor
 	@Version
 	private Long version;
 	
+	// LOB: Large Object Binary
 	@Lob
+	@Column(name = "big_data")
 	private String bigData;
 	
 	@Id // PK+NN+UN
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	// @GeneratedValue(strategy = GenerationType.AUTO) // for postgres
 	@Column(name = "student_id", insertable = false, updatable = false)
-	// optimistik Locking: kilitlenme
-	// @Version: Birden fazla transaction durumlarında: datalarımızın aynı anda
-	// değişiklik yapılmasına izin verimiyor
+	// generator="key" map için kullanıyoruz
+	// sequenceName sequenceAdi
+	// allocationSize: artırma miktarı
+	// @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "key")
+	// @SequenceGenerator(name = "key", sequenceName = "STUDENT_ID_SEQ",
+	// allocationSize = 1)
+	// insertable = false bu bize bu kolon için ekleme yapamazsın
+	// updatable = false bu bize bu kolon için güncelleme yapamazsın
 	private long studentId;
 	
 	@Column(name = "student_name", length = 255)
@@ -51,6 +61,9 @@ public class StudentEntity implements Serializable {
 	@Column(name = "student_password")
 	private String studentPassword;
 	
+	// DATE:yıl ay gün
+	// TIME:saat dakika saniye
+	// TIMESTAMP:yıl ay gün saat dakika saniye
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Date date;
@@ -65,11 +78,24 @@ public class StudentEntity implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
+	// parametreli constructor
 	public StudentEntity(String studentName, String studentSurname, String emailAddress, String studentPassword) {
 		this.studentName = studentName;
 		this.studentSurname = studentSurname;
 		this.emailAddress = emailAddress;
 		this.studentPassword = studentPassword;
+	}
+	
+	// parametreli constructor
+	public StudentEntity(String bigData, String studentName, String studentSurname, String emailAddress,
+			String studentPassword, int tcNumber) {
+		super();
+		this.bigData = bigData;
+		this.studentName = studentName;
+		this.studentSurname = studentSurname;
+		this.emailAddress = emailAddress;
+		this.studentPassword = studentPassword;
+		this.tcNumber = tcNumber;
 	}
 	
 	public long getStudentId() {

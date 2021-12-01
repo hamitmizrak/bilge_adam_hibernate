@@ -23,6 +23,10 @@
 		<property name="showsql">true</property>
 		<property name="connection.autocommit">true</property>
 		<property name="hbm2ddl.auto">create</property>
+		<!-- create: tamamen sil tekrar oluştur -->
+		<!-- update: var olanı üzerinen yaz -->
+		<!-- create-drop: varsa siliyor tekrar oluşturuyor yoksa direk soluşturuyor. -->
+		
 		<!-- <property name="hbm2ddl.auto">create</property> -->
 		<!-- <property name="hbm2ddl.auto">update</property> -->
 		<!-- <property name="hbm2ddl.auto">create-drop</property> -->

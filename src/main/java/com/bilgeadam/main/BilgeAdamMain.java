@@ -1,5 +1,9 @@
 package com.bilgeadam.main;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import com.bilgeadam.controller.BilgeAdamController;
 import com.bilgeadam.entity.BilgeAdamEntity;
 
@@ -15,7 +19,18 @@ import com.bilgeadam.entity.BilgeAdamEntity;
  */
 public class BilgeAdamMain {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		
+		// fileUpload==> nio
+		// database html yükledi.
+		// CLOB is for large text data (text)
+		String html = new String(Files.readAllBytes(Paths.get("bilgeadam.htm")));
+		
+		// database css eklemek
+		String css = new String(Files.readAllBytes(Paths.get("bilgeadam.css")));
+		
+		// BLOB is for binary data (videos, images, documents, other)
+		byte[] resimBlob = Files.readAllBytes(Paths.get("bilgeadam.jpg"));
 		
 		// rol management
 		// emaail
@@ -26,6 +41,9 @@ public class BilgeAdamMain {
 		bilgeAdamEntity.setPassword("4525");
 		// bilgeAdamEntity.setPrice(12345678.123);
 		bilgeAdamEntity.setSpesicificValue("ekleme yapılıyor-2");
+		bilgeAdamEntity.setHtml(html);
+		bilgeAdamEntity.setCss(css);
+		bilgeAdamEntity.setPicture(resimBlob);
 		
 		BilgeAdamController bilgeAdamController = new BilgeAdamController();
 		bilgeAdamController.create(bilgeAdamEntity);

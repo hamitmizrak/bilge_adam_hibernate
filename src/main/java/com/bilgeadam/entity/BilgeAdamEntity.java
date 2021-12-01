@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -18,13 +19,26 @@ public class BilgeAdamEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	// blob: büüyk verilerimizi database gömmek isteyebiliriz.
+	// bütün veriler database olsun
+	// büyük veriler uğraşmak
+	
+	@Lob
+	private String html;
+	
+	@Lob
+	private String css;
+	
+	@Lob
+	private byte[] picture;
+	
 	// email :
 	@Column(name = "email", length = 100, nullable = false, unique = true)
 	private String email;
 	
 	// password
 	// updatable:false ==> güncelleme yapamazsın ==> session.merge
-	@Column(name = "password", updatable = false)
+	@Column(name = "password", updatable = true)
 	private String password;
 	
 	// insertable:false ==> ekleme yapamazsın==> session.persist
@@ -77,6 +91,30 @@ public class BilgeAdamEntity implements Serializable {
 	
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public String getHtml() {
+		return html;
+	}
+	
+	public void setHtml(String html) {
+		this.html = html;
+	}
+	
+	public String getCss() {
+		return css;
+	}
+	
+	public void setCss(String css) {
+		this.css = css;
+	}
+	
+	public byte[] getPicture() {
+		return picture;
+	}
+	
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
 	}
 	
 }

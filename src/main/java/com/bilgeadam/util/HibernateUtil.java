@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.bilgeadam.entity.BilgeAdamEntity;
+import com.bilgeadam.entity.EticaretEntity;
 import com.bilgeadam.entity.StudentEntity;
 
 public class HibernateUtil {
@@ -18,6 +19,7 @@ public class HibernateUtil {
 			// entity classlarımızı buraya ekleyeceğiz
 			configuration.addAnnotatedClass(StudentEntity.class);
 			configuration.addAnnotatedClass(BilgeAdamEntity.class);
+			configuration.addAnnotatedClass(EticaretEntity.class);
 			
 			SessionFactory factory = configuration.configure("hibernate.cfg.xml").buildSessionFactory();
 			return factory;

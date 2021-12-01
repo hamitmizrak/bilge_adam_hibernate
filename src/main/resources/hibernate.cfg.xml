@@ -8,12 +8,10 @@
 		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> -->
 		<!-- <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bilge_adam?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Turkey</property> -->
 		<!-- <property name="hibernate.connection.username">root</property> -->
-			<!-- <property name="hibernate.connection.password">root</property> -->
+		<!-- <property name="hibernate.connection.password">root</property> -->
 		
 		<!-- HQL ile SQL dönüşümünü sağlar dialect -->
-		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-		
-			
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>		
 
 		<!-- database connection POSTGRESQL -->
 		<!-- <property name="hibernate.connection.driver_class">org.postgresql.Driver</property> -->
@@ -24,15 +22,13 @@
 		<!-- hibernate config -->
 		<property name="showsql">true</property>
 		<property name="connection.autocommit">true</property>
-		 <property name="hbm2ddl.auto">update</property>
-<!-- 		<property name="hbm2ddl.auto">create</property> -->
+		<property name="hbm2ddl.auto">update</property>
+		<!-- <property name="hbm2ddl.auto">create</property> -->
 		<!-- <property name="hbm2ddl.auto">create-drop</property> -->
 
 		<!-- Türkçe karakter sorununu çözecek -->
 		<property name="hibernate.connection.useUnicode">true</property>
 		<property name="hibernate.connection.characterEncoding">UTF-8</property>
-
-
 
 		<!--Database kontrolu -->
 		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>

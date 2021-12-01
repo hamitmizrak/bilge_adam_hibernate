@@ -14,12 +14,8 @@ public class StudentEntityMain {
 		//// emailAddress,
 		// String studentPassword, int tcNumber
 		for (int i = 0; i < 10; i++) {
-			StudentEntity studentEntity = new StudentEntity();
-			studentEntity.setEmailAddress("hamitmizrak@gmail.com");
-			studentEntity.setStudentName("Hamit");
-			studentEntity.setStudentPassword("root");
-			studentEntity.setStudentSurname("Mızrak");
-			
+			StudentEntity studentEntity = new StudentEntity("big data " + i, "Hamit " + i, "Mızrak" + i,
+					"hamitmizrak@gmail.com " + i, "passwords" + i, 100 + i);
 			StudentController studentController1 = new StudentController();
 			studentController1.create(studentEntity);
 		}

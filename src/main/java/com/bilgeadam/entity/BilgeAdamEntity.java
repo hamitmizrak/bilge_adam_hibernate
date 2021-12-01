@@ -22,8 +22,17 @@ public class BilgeAdamEntity implements Serializable {
 	@Column(name = "email", length = 100, nullable = false, unique = true)
 	private String email;
 	
+	// password
+	// updatable:false ==> güncelleme yapamazsın ==> session.merge
 	@Column(name = "password", updatable = false)
 	private String password;
+	
+	// insertable:false ==> ekleme yapamazsın==> session.persist
+	@Column(name = "specific_value", insertable = false)
+	private String spesicificValue;
+	
+	@Column(name = "price", columnDefinition = "Decimal(10,2) default '100.00'")
+	private double price;
 	
 	// getter and setter
 	public long getId() {
@@ -52,6 +61,22 @@ public class BilgeAdamEntity implements Serializable {
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getSpesicificValue() {
+		return spesicificValue;
+	}
+	
+	public void setSpesicificValue(String spesicificValue) {
+		this.spesicificValue = spesicificValue;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	
 }

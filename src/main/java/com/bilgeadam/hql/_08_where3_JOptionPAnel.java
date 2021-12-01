@@ -12,9 +12,9 @@ import org.hibernate.Session;
 import com.bilgeadam.entity.StudentEntity;
 import com.bilgeadam.util.HibernateUtil;
 
-public class _08_where2 {
+public class _08_where3_JOptionPAnel {
 	// logger
-	private static final Logger logger = LogManager.getLogger(_08_where2.class);
+	private static final Logger logger = LogManager.getLogger(_08_where3_JOptionPAnel.class);
 	
 	public static void main(String[] args) {
 		// Session
@@ -28,7 +28,8 @@ public class _08_where2 {
 		String hql = "select stu from  StudentEntity as stu where tcNumber>=:key"; // dynamic kullanıcıdan almak
 		
 		String userValeu = JOptionPane.showInputDialog("lütfen bir sayı giriniz");
-		int number = 5;
+		int number = Integer.valueOf(userValeu);
+		// int number = 5;
 		TypedQuery<StudentEntity> typedQuery = session.createQuery(hql, StudentEntity.class);
 		typedQuery.setParameter("key", number);
 		

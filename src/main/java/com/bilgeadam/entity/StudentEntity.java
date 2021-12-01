@@ -19,7 +19,7 @@ import javax.persistence.Version;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "student")
+@Table(name = "studentEntity")
 public class StudentEntity implements Serializable {
 	private static final long serialVersionUID = 8254402310579127680L;
 	

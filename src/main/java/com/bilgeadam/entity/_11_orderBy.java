@@ -1,4 +1,4 @@
-package com.bilgeadam.hql;
+package com.bilgeadam.entity;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
-import com.bilgeadam.entity.StudentEntity;
 import com.bilgeadam.util.HibernateUtil;
 
 // merge=update find=find delete=remove insert=persist select=TypedQuery

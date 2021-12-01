@@ -1,4 +1,4 @@
-package com.bilgeadam.hql;
+package com.bilgeadam.egitim.hql;
 
 import java.util.ArrayList;
 
